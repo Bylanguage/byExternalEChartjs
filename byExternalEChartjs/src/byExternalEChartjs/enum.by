@@ -1,0 +1,19 @@
+﻿ku byExternalEChartjs
+{
+    system biao enum "枚举类型表" (
+    string name "名称"
+    , string[] values "枚举值")
+    {
+        { chartType "图表", { bar "柱形图", bubble "气泡图", doughnut "环形图", pie "饼图", line "折线图", scatter "混合图", polarArea "极地图", radar "雷达图", linear "散点图" } } 
+        { chartTypeRange "类型范围", { all "全部",general"普通常用",generalRadar"普通常用+雷达图", scatterRadar "混合图 雷达图" ,linearBubble "散点图 气泡图"} } 
+    }
+}
+
+ 
+
+    
+    
+
+
+
+

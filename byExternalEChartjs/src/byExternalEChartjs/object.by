@@ -1,0 +1,16 @@
+﻿ku byExternalEChartjs
+{
+    system biao object "面向对象类型表" (
+    string name "名称"
+    , string[] scenes "场景"
+    , string[] modifiers "修饰符"
+    , string kind "类型类别"
+    , string inheritance "继承项"
+    , string[] implementations "实现项")
+    {
+        { echartjs "webjs库 调用原生charjs库在页面上绘制", { web }, { external }, class, , {  } }
+        { ChartData "echartjs line race 图表的数据", { server, web }, {  }, class, , {  } }
+        { ChartDataArr "包含list数据",{server,web},{ },class,,{}}
+        { TreeData "Tree数据",{server,web},{ },class,,{}}
+    }
+}

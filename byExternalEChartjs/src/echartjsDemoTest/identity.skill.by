@@ -1,0 +1,454 @@
+﻿ku EChartjsDemoTest
+{
+    system biao identity.skill "身份技能表" (
+    string belong "所属类型"
+    , string name "名称"
+    , string[] scenes "场景"
+    , string[] modifiers "修饰符"
+    , string[] parameters "参数"
+    , string returnType "返回类型"
+    , string body "技能体")
+    {
+        { ClientStartup, main "客户端入口点", { client }, { static }, { string[] args "启动参数"}, void, {
+            
+        } }
+        { ServerStartup, main "服务端入口点", { server }, { static }, { string[] args "启动参数" }, void, {
+            
+        } }
+        { Home, main "网页主技能，重写此技能以实现自定义的网页初始化逻辑", { web }, {  }, { string queryArgs "网页当前参数字符串，即url中?符后面的内容" }, void, {
+            
+           //1.调用堆叠渐变图
+            
+        var dataListArr=new List<ChartDataArr>();
+        dataListArr.add(new ChartDataArr("Series 1",new double[]{120, 132, 101, 134, 90, 230, 210}));
+        dataListArr.add(new ChartDataArr("Series 2",new double[]{220, 182, 191, 234, 290, 330, 310}));
+        dataListArr.add(new ChartDataArr("Series 3",new double[]{150, 232, 201, 154, 190, 330, 410}));
+        dataListArr.add(new ChartDataArr("Series 4",new double[]{320, 332, 301, 334, 390, 330, 320}));
+        echartjs.areaStackGradient( "areaStackGradient",  "图标的标题",new string[]{"Mon","Tue","Wed","Thu","Fri","Sat","Sun"},ChartDataArr.arrToJson<ChartDataArr>(dataListArr.toArray()));
+           
+           //2.调用动态条形图
+           //构建测试数据 
+           var tmp1 = new List<ChartDataArr>();
+           DateTime dt1=DateTime.getNow();
+           var yData=new double[5]; 
+           for(var i=0;i<5;i++)
+           {
+               yData[i]=0;
+           }          
+            tmp1.add(new ChartDataArr(dt1.toString(),yData));
+           for (var i = 0; i <10;  i++)
+           {            
+               yData=new double[5]; 
+               
+                for(var j=0;j<5;j++)
+                {
+                    if(Math.random()>0.8)
+                    {
+                        yData[j]=Math.floor(Math.random()*100*i);
+                    }else
+                    {
+                        yData[j]=Math.floor(Math.random()*10*i);
+                    }
+                }
+                tmp1.add(new ChartDataArr(dt1.addDays(i).toString(),yData));           
+          
+           }
+            //调用动态条形图          
+           echartjs.barRace("barRace","动态柱状测试图",new string[]{
+               "A","B","C","D","E"},ChartDataArr.arrToJson<ChartDataArr>(tmp1.toArray()));
+           
+           //3.简单柱状图
+           echartjs.barSimple("barSimple", "柱状图", new string[] { "A", "B", "C", "D", "E" }, new double[] { 100, 200, 300, 400, 500 });
+           
+           //4.动态折线图
+           //构建测试数据
+           List<ChartData> dataList=new List<ChartData>();
+           var countries=new string[]{"United States", "Canada", "United Kingdom", "Australia", "Germany"};
+           for(var i=1990;i<2000;i++)
+            {
+                for(var j=0;j<countries.length;j++)
+                {
+                   dataList.add(new ChartData(countries[j],i,Math.ceiling( Math.random()*i))); 
+                }
+            }
+            //调用动态折线图
+            echartjs.lineRace("lineRace","动态折线图","国家",ChartData.toListJson(dataList),"年","人均gdp");
+            
+            //5.箱型图
+            double[][] data = new double[][]{
+                new double[] {850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960},
+                new double[] {960, 940, 960, 940, 880, 800, 850, 880, 900, 840, 830, 790, 810, 880, 880, 830, 800, 790, 760, 800},
+                new double[] {880, 880, 880, 860, 720, 720, 620, 860, 970, 950, 880, 910, 850, 870, 840, 840, 850, 840, 840, 840},
+                new double[] {890, 810, 810, 820, 800, 770, 760, 740, 750, 760, 910, 920, 890, 860, 880, 720, 840, 850, 850, 780},
+                new double[] {890, 840, 780, 810, 760, 810, 790, 810, 820, 850, 870, 870, 810, 740, 810, 940, 950, 800, 810, 870}
+            };
+
+            echartjs.boxplot("boxplot","Michelson-Morley Experiment",data);  
+             
+            //6. 堆叠图
+            var data6 = new Dictionary<string, Dictionary<string, int>>();
+            //测试数据
+            var tmp61 = new Dictionary<string, int>();
+            tmp61.add("Email", 120);
+            tmp61.add("Union Ads", 220);
+            tmp61.add("Video Ads", 160);
+            data6.add("thu", tmp61);
+            
+            tmp61 = new Dictionary<string, int>();
+            tmp61.add("Email", 132);
+            tmp61.add("Union Ads", 182);
+            tmp61.add("Video Ads", 232);
+            data6.add("fri", tmp61);
+            
+            tmp61 = new Dictionary<string, int>();
+            tmp61.add("Email", 101);
+            tmp61.add("Union Ads", 191);
+            tmp61.add("Video Ads", 201);
+            data6.add("sat", tmp61);
+            
+            tmp61 = new Dictionary<string, int>();
+            tmp61.add("Email", 134);
+            tmp61.add("Union Ads", 234);
+            tmp61.add("Video Ads", 154);
+            data6.add("sun", tmp61);
+            
+            tmp61 = new Dictionary<string, int>();
+            tmp61.add("Email", 90);
+            tmp61.add("Union Ads", 290);
+            tmp61.add("Video Ads", 190);
+            data6.add("mon", tmp61);
+            
+            tmp61 = new Dictionary<string, int>();
+            tmp61.add("Email", 230);
+            tmp61.add("Union Ads", 330);
+            tmp61.add("Video Ads", 330);
+            data6.add("tue", tmp61);
+            
+            tmp61 = new Dictionary<string, int>();
+            tmp61.add("Email", 210);
+            tmp61.add("Union Ads", 310);
+            tmp61.add("Video Ads", 410);
+            data6.add("wed", tmp61);
+            echartjs.stackBar("stackBar", "Weekly Ad Performance", ChartData.dictToJson(data6));
+            
+            //7.蜡烛图
+            var data7=new List<ChartDataArr>();
+            var tmpDate=DateTime.getNow();
+            for(var i=0;i<5;i++)
+            {
+                tmpDate.addDays(1);
+                var tmpValues=new List<double>();
+                for(var j=0;j<100;j++)
+                {
+                    tmpValues.add(Math.floor(Math.random()*1000 )   );
+                }
+                data7.add(new ChartDataArr(tmpDate.toString(),tmpValues.toArray()));
+            }
+            var tmpStr=data7.toArray();
+            echartjs.candlestick("candlestick","基础蜡烛图",ChartDataArr.arrToJson<ChartDataArr>(data7.toArray()));
+            
+            //8.上证指数
+            data7=new List<ChartDataArr>();
+            ChartDataArr tmpA;
+            tmpDate=DateTime.getNow();
+            var values=new List<double>();
+            for(var i=0;i<20;i++)
+            {
+                for(var j=0;j<3;j++)
+                {
+                    values.add(Math.floor(Math.random()*2000));
+                }
+                values.add(values[2]+Math.floor(Math.random()*50 ));
+                tmpA=new ChartDataArr(tmpDate.toString(),values.toArray());
+                data7.add(tmpA);
+                values=new List<double>();
+            }
+            echartjs.candlestick_sh("candlestick_sh","",ChartDataArr.arrToJson<ChartDataArr>(data7.toArray()));
+            
+            //9.平滑曲线图
+            dataList = new List<ChartData>();
+            dataList.add(new ChartData("", 1, 7));
+            dataList.add(new ChartData("", 2, 6));
+            dataList.add(new ChartData("", 3, 4));
+            dataList.add(new ChartData("", 4, 5));
+            dataList.add(new ChartData("", 5, 6));
+            dataList.add(new ChartData("", 6, 7));
+            dataList.add(new ChartData("", 7, 8));
+            echartjs.lineSmooth("linesmooth","平滑曲线图",ChartData.toListJson(dataList));
+            //10.散点图
+            data=new double[100][2];
+            for(var i=0;i<100;i++)
+            {
+                data[i][0]=Math.random()*100;
+                data[i][1]=Math.random()*100;
+            }
+            echartjs.scatter("scatter","散点图",data);
+            
+            //11. 树形图
+             
+            var root = new TreeData("root");
+
+            for (int i = 0; i < 3; i++)
+            {
+                var node = new TreeData("node" + i);
+                root.children.add(node);
+
+            for (int j = 0; j < 3; j++)
+            {
+                var child = new TreeData("node" + i + j);
+                node.children.add(child);
+
+                for (int k = 0; k < 3; k++)
+                {
+                    var grandChild = new TreeData("node" + i + j + k);
+                    child.children.add(grandChild);
+                }
+            }
+            }
+            echartjs.treeBasic("treebasic","树形图",root.toString());
+            
+            //12.漏斗图
+            dataList = new List<ChartData>();
+            dataList.add(new ChartData("访问",0, 60));
+            dataList.add(new ChartData("咨询",0, 40));
+            dataList.add(new ChartData("订单", 0,20));
+            dataList.add(new ChartData("点击", 0,80));
+            dataList.add(new ChartData("展现", 0,100));
+            echartjs.funnel("funnel","漏斗图",ChartData.toListJson(dataList));
+            //13.简单饼图
+            dataList = new List<ChartData>();
+            dataList.add(new ChartData("Search Engine", 0, 1048));
+            dataList.add(new ChartData("Direct", 0, 735));
+            dataList.add(new ChartData("Email", 0, 580));
+            dataList.add(new ChartData("Union Ads", 0, 484));
+            dataList.add(new ChartData("Video Ads", 0, 300));
+            echartjs.pieSimple("pieSimple", "饼图", ChartData.toListJson(dataList));
+            //14.圆角饼图
+            dataList=new List<ChartData>();
+            dataList.add(new ChartData("直接访问",0,335));
+            dataList.add(new ChartData("邮件营销",0,310));
+            dataList.add(new ChartData("联盟广告",0,234));
+            dataList.add(new ChartData("视频广告",0,135));
+            dataList.add(new ChartData("搜索引擎",0,1548));
+            echartjs.pieBorderRadius("pieBorderRadius","圆角饼图",ChartDataArr.arrToJson<ChartData>(dataList.toArray()));
+            //15.雷达图
+            dataList=new List<ChartData>();
+            dataList.add(new ChartData("Sales",0,6500));
+            dataList.add(new ChartData("Administration",0,16000));
+            dataList.add(new ChartData("Information Technology",0,30000));
+            dataList.add(new ChartData("Customer Support",0,38000));
+            dataList.add(new ChartData("Development",0,52000));
+            dataList.add(new ChartData("Marketing",0,25000));
+            
+            data7=new List<ChartDataArr>();
+            data7.add(new ChartDataArr("Allocated Budget", new double[]{4200, 3000, 20000, 35000, 50000, 18000}));
+            data7.add(new ChartDataArr("Expected Spending", new double[]{5000, 14000, 28000, 26000, 42000, 21000}));
+            data7.add(new ChartDataArr("Actual Spending", new double[]{5500, 15000, 29000, 27000, 43000, 22000}));
+            
+            echartjs.radar("radar","雷达图",ChartDataArr.arrToJson<ChartDataArr>(data7.toArray()),ChartDataArr.arrToJson<ChartData>(dataList.toArray()));
+            //16.力图
+            dataList=new List<ChartData>();
+            var tmplist=new List<double[]>();
+            for(var i=0;i<10;i++)
+            {
+                dataList.add(new ChartData("foo"+i,0,Math.floor(Math.random()*100)));
+                for(var j=i+1;j<10;j++)
+                {
+                    if(Math.random()<0.3)
+                    {
+                        tmplist.add(new double[]{i,j});
+                    }
+                }
+            }
+            echartjs.graphForce("graphForce","力导向图",ChartDataArr.arrToJson<ChartData>(dataList.toArray()),tmplist.toArray()); 
+            //17.绘制函数图像
+            tmplist=new List<double[]>();
+            double d=-200;
+            for(var i=-2000;i<=2000;i++)
+            {
+                var tmp=new double[]{d,ChartData.testFunction(d)};
+                tmplist.add(tmp);
+                d+=0.1;
+            }
+            echartjs.lineFunction("lineFunction","绘制函数图",tmplist.toArray());
+            
+            //18.南丁格尔玫瑰图
+            dataList=new List<ChartData>();
+            for(var i=0;i<10;i++)
+            {
+                dataList.add(new ChartData("foo"+i,0,Math.random()*100));
+            }
+            echartjs.Nightingale_rose("rose","南丁格尔玫瑰图",ChartDataArr.arrToJson<ChartData>(dataList.toArray()));
+            //19 旭日图
+            //测试数据
+            var grandpa = new TreeData("Grandpa");
+            var uncleLeo = new TreeData("Uncle Leo", 15);
+            uncleLeo.AddChild(new TreeData("Cousin Jack", 2)); 
+            var cousinMary = new TreeData("Cousin Mary", 5);
+            cousinMary.AddChild(new TreeData("Jackson", 2));
+            uncleLeo.AddChild(cousinMary);
+            uncleLeo.AddChild(new TreeData("Cousin Ben", 4));
+            grandpa.AddChild(uncleLeo);
+            var father = new TreeData("Father", 10);
+            father.AddChild(new TreeData("Me", 5));
+            father.AddChild(new TreeData("Brother Peter", 1));
+            grandpa.AddChild(father);
+            
+            var nancy = new TreeData("Nancy");
+            var uncleNike = new TreeData("Uncle Nike");
+            uncleNike.AddChild(new TreeData("Cousin Betty", 1));
+            uncleNike.AddChild(new TreeData("Cousin Jenny", 2));
+            nancy.AddChild(uncleNike);            
+            var treeList = new List<TreeData>();
+            treeList.add(grandpa);
+            treeList.add(nancy);
+            echartjs.sunburst("sunburst","旭日图",ChartDataArr.arrToJson<TreeData>(treeList.toArray()));    
+            //20. 河流图
+            //测试数据
+            dataList=new List<ChartData>();
+            dataList.add(new ChartData("2015/11/08",0,10));
+            dataList.add(new ChartData("2015/11/09",0,15));
+            dataList.add(new ChartData("2015/11/10",0,35));
+            dataList.add(new ChartData("2015/11/11",0,38));
+            dataList.add(new ChartData("2015/11/12",0,22));
+            dataList.add(new ChartData("2015/11/13",0,16));
+            dataList.add(new ChartData("2015/11/14",0,7));
+            dataList.add(new ChartData("2015/11/15",0,2));
+            dataList.add(new ChartData("2015/11/16",0,17));
+            dataList.add(new ChartData("2015/11/17",0,33));
+            dataList.add(new ChartData("2015/11/18",0,40));
+            dataList.add(new ChartData("2015/11/19",0,32));
+            dataList.add(new ChartData("2015/11/20",0,26));
+            dataList.add(new ChartData("2015/11/21",0,35));
+            dataList.add(new ChartData("2015/11/22",0,40));
+            dataList.add(new ChartData("2015/11/23",0,32));
+            dataList.add(new ChartData("2015/11/24",0,26));
+            dataList.add(new ChartData("2015/11/25",0,22));
+            dataList.add(new ChartData("2015/11/26",0,16));
+            dataList.add(new ChartData("2015/11/27",0,22));
+            dataList.add(new ChartData("2015/11/28",0,10));
+            dataList.add(new ChartData("2015/11/08",1,35));
+            dataList.add(new ChartData("2015/11/09",1,36));
+            dataList.add(new ChartData("2015/11/10",1,37));
+            dataList.add(new ChartData("2015/11/11",1,22));
+            dataList.add(new ChartData("2015/11/12",1,24));
+            dataList.add(new ChartData("2015/11/13",1,26));
+            dataList.add(new ChartData("2015/11/14",1,34));
+            dataList.add(new ChartData("2015/11/15",1,21));
+            dataList.add(new ChartData("2015/11/16",1,18));
+            dataList.add(new ChartData("2015/11/17",1,45));
+            dataList.add(new ChartData("2015/11/18",1,32));
+            dataList.add(new ChartData("2015/11/19",1,35));
+            dataList.add(new ChartData("2015/11/20",1,30));
+            dataList.add(new ChartData("2015/11/21",1,28));
+            dataList.add(new ChartData("2015/11/22",1,27));
+            dataList.add(new ChartData("2015/11/23",1,26));
+            dataList.add(new ChartData("2015/11/24",1,15));
+            dataList.add(new ChartData("2015/11/25",1,30));
+            dataList.add(new ChartData("2015/11/26",1,35));
+            dataList.add(new ChartData("2015/11/27",1,42));
+            dataList.add(new ChartData("2015/11/28",1,42));
+            dataList.add(new ChartData("2015/11/08",2,21));
+            dataList.add(new ChartData("2015/11/09",2,25));
+            dataList.add(new ChartData("2015/11/10",2,27));
+            dataList.add(new ChartData("2015/11/11",2,23));
+            dataList.add(new ChartData("2015/11/12",2,24));
+            dataList.add(new ChartData("2015/11/13",2,21));
+            dataList.add(new ChartData("2015/11/14",2,35));
+            dataList.add(new ChartData("2015/11/15",2,39));
+            dataList.add(new ChartData("2015/11/16",2,40));
+            dataList.add(new ChartData("2015/11/17",2,36));
+            dataList.add(new ChartData("2015/11/18",2,33));
+            dataList.add(new ChartData("2015/11/19",2,43));
+            dataList.add(new ChartData("2015/11/20",2,40));
+            dataList.add(new ChartData("2015/11/21",2,34));
+            dataList.add(new ChartData("2015/11/22",2,28));
+            dataList.add(new ChartData("2015/11/23",2,26));
+            dataList.add(new ChartData("2015/11/24",2,37));
+            dataList.add(new ChartData("2015/11/25",2,41));
+            dataList.add(new ChartData("2015/11/26",2,46));
+            dataList.add(new ChartData("2015/11/27",2,47));
+            dataList.add(new ChartData("2015/11/28",2,41));
+            dataList.add(new ChartData("2015/11/08",3,10));
+            dataList.add(new ChartData("2015/11/09",3,15));
+            dataList.add(new ChartData("2015/11/10",3,35));
+            dataList.add(new ChartData("2015/11/11",3,38));
+            dataList.add(new ChartData("2015/11/12",3,22));
+            dataList.add(new ChartData("2015/11/13",3,16));
+            dataList.add(new ChartData("2015/11/14",3,7));
+            dataList.add(new ChartData("2015/11/15",3,2));
+            dataList.add(new ChartData("2015/11/16",3,17));
+            dataList.add(new ChartData("2015/11/17",3,33));
+            dataList.add(new ChartData("2015/11/18",3,40));
+            dataList.add(new ChartData("2015/11/19",3,32));
+            dataList.add(new ChartData("2015/11/20",3,26));
+            dataList.add(new ChartData("2015/11/21",3,35));
+            dataList.add(new ChartData("2015/11/22",3,40));
+            dataList.add(new ChartData("2015/11/23",3,32));
+            dataList.add(new ChartData("2015/11/24",3,26));
+            dataList.add(new ChartData("2015/11/25",3,22));
+            dataList.add(new ChartData("2015/11/26",3,16));
+            dataList.add(new ChartData("2015/11/27",3,22));
+            dataList.add(new ChartData("2015/11/28",3,10));
+            dataList.add(new ChartData("2015/11/08",4,10));
+            dataList.add(new ChartData("2015/11/09",4,15));
+            dataList.add(new ChartData("2015/11/10",4,35));
+            dataList.add(new ChartData("2015/11/11",4,38));
+            dataList.add(new ChartData("2015/11/12",4,22));
+            dataList.add(new ChartData("2015/11/13",4,16));
+            dataList.add(new ChartData("2015/11/14",4,7));
+            dataList.add(new ChartData("2015/11/15",4,2));
+            dataList.add(new ChartData("2015/11/16",4,17));
+            dataList.add(new ChartData("2015/11/17",4,33));
+            dataList.add(new ChartData("2015/11/18",4,40));
+            dataList.add(new ChartData("2015/11/19",4,32));
+            dataList.add(new ChartData("2015/11/20",4,26));
+            dataList.add(new ChartData("2015/11/21",4,35));
+            dataList.add(new ChartData("2015/11/22",4,4));
+            dataList.add(new ChartData("2015/11/23",4,32));
+            dataList.add(new ChartData("2015/11/24",4,26));
+            dataList.add(new ChartData("2015/11/25",4,22));
+            dataList.add(new ChartData("2015/11/26",4,16));
+            dataList.add(new ChartData("2015/11/27",4,22));
+            dataList.add(new ChartData("2015/11/28",4,10));
+            dataList.add(new ChartData("2015/11/08",5,10));
+            dataList.add(new ChartData("2015/11/09",5,15));
+            dataList.add(new ChartData("2015/11/10",5,35));
+            dataList.add(new ChartData("2015/11/11",5,38));
+            dataList.add(new ChartData("2015/11/12",5,22));
+            dataList.add(new ChartData("2015/11/13",5,16));
+            dataList.add(new ChartData("2015/11/14",5,7));
+            dataList.add(new ChartData("2015/11/15",5,2));
+            dataList.add(new ChartData("2015/11/16",5,17));
+            dataList.add(new ChartData("2015/11/17",5,33));
+            dataList.add(new ChartData("2015/11/18",5,4));
+            dataList.add(new ChartData("2015/11/19",5,32));
+            dataList.add(new ChartData("2015/11/20",5,26));
+            dataList.add(new ChartData("2015/11/21",5,35));
+            dataList.add(new ChartData("2015/11/22",5,40));
+            dataList.add(new ChartData("2015/11/23",5,32));
+            dataList.add(new ChartData("2015/11/24",5,26));
+            dataList.add(new ChartData("2015/11/25",5,22));
+            dataList.add(new ChartData("2015/11/26",5,16));
+            dataList.add(new ChartData("2015/11/27",5,22));
+            dataList.add(new ChartData("2015/11/28",5,10));
+            echartjs.themeRiver("themeRiver","河流图",ChartDataArr.arrToJson<ChartData>(dataList.toArray()),new string[]{"DQ", "TY", "SS", "QG", "SY", "DD"});
+            
+            //21. 散点聚合条形图
+            //构建测试数据,为了让数据看起来真实，生成正态分布的测试数据
+            dataList=new List<ChartData>();
+            for(var i=0;i<200;i++)
+            {
+                if(Math.random()>0.6)
+                {
+                    dataList.add(new ChartData("male",Math.floor(170+(20*Math.random()-20)),Math.floor(60+(20*Math.random()-10))));
+                    
+                }else
+                {
+                    dataList.add(new ChartData("female",Math.floor(160+(15*Math.random()-15)),Math.floor(50+(10*Math.random()-10))));    
+                }
+            }
+            echartjs.scatterAggreateBar("scatterAggreateBar",ChartDataArr.arrToJson<ChartData>(dataList.toArray()));
+    }
+    }}
+}

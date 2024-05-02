@@ -1,0 +1,149 @@
+﻿ku byExternalEChartjs
+{
+    system biao object.method "面向对象方法表" (
+    string belong "所属类型"
+    , string name "名称"
+    , string[] scenes "场景"
+    , string[] modifiers "修饰符"
+    , string[] parameters "参数"
+    , string returnType "返回类型"
+    , string body "方法体")
+    {
+        { echartjs, hello"hello", {  }, { static}, { string f_canvasID"测试"} ,void ,}
+        { echartjs, areaStackGradient"创建一个区域堆栈渐变", {  }, { static}, { string id "元素的ID", string title "图表的标题", string[] names "横坐标名称", string data "ChartDataArr[], {xData:系列名称,yData:表示每个系列的数据点，条数和names数量对应}"  } ,void ,}
+        { echartjs, barRace"用于表现数据随时间变化的柱状动态图表", {  }, { static}, {string id"元素的ID", string title"图表的标题", string[] header"表头- ['a','B','C','D','E']", string list"- ChartDataArr[] xData-时间，yData:[1,2,3,4,5]，数量和header对应" } ,string ,}
+        { echartjs, barSimple"简单柱图表", {  }, { static}, {string id"元素的ID", string title"图表的标题", string[] xAxis"x 轴数据- ['A','B','C','D','E']", double[] list"-y 轴数据" } ,string ,}
+        { echartjs, lineRace"line race 图表", {  }, { static}, {string id"元素的ID", string title"图表的标题", string type "数据的头部- ['A','B','C','D','E']", string data"-Json格式 {Array<{label: string, xData: number, yData: number}>",string xlabel "x标签",string ylabel "y标签" } ,string ,}
+        { echartjs, boxplot"箱型图，用于展示数据的分布情况", {  }, { static}, {string id"元素的ID", string title"图表的标题",   double[][] list"- [[1,2,3,4,5],[1,2,3,4,5,6],...]" } ,string ,}
+        { echartjs, stackBar"堆叠柱形图", {  }, { static}, {string id"元素的ID", string title"图表的标题",   string data"- json对象" } ,string ,}
+        { echartjs, candlestick"基础蜡烛图",{},{static},{string id"元素的ID", string title"图表的标题",   string data"- ChartDataArr[] {xData:类别名称,yData:值[]}"},string,}
+        { echartjs, candlestick_sh"上证指数",{},{static},{string id"元素的ID", string title"图表的标题",   string data"- ChartDataArr[] xData:日期 ，yData为元组，分别对应[开市，休市，低位，高位]"},string,}
+        { echartjs, lineSmooth"平滑曲线图",{},{static},{string id"元素的ID", string title"图表的标题",   string data"- ChartData[] json对象"},string,}
+        { echartjs, scatter "散点图", {  }, { static }, { string id"元素的ID", string title"图表的标题",   double[][] data"- [[x1,y1],[x2,y2]...]" }, void,  }
+        { echartjs, treeBasic "散点图", {  }, { static }, { string id"元素的ID", string title"图表的标题",  string data"- TreeData[] json对象" }, void,  }
+        { echartjs, funnel"漏斗图", {  }, { static  }, { string id"元素的ID", string title"图表的标题",  string data"- ChartData[] json对象"  }, void,  }
+        { echartjs, pieSimple"饼状图", {  }, { static  }, { string id"元素的ID", string title"图表的标题",  string data"- ChartData[] {xData:类别名称,yData:值}"  }, void,  }
+        { echartjs, pieBorderRadius"饼状图", {  }, { static  }, { string id"元素的ID", string title"图表的标题",  string data"- ChartData[] {label:类别名称,yData:值}"  }, void,  }
+        { echartjs, radar"雷达图", {  }, { static  }, { string id"元素的ID", string title"图表的标题",  string data"- ChartDataArr[] json对象" ,string indicator "ChartData[],指标" }, void,  }
+        { echartjs, graphForce"力导向图", {  }, { static  }, { string id"元素的ID", string title"图表的标题",  string data"- ChartData[] {label:类别名称,yData:值}" ,double[][] links"ChartData[],指标" }, void,  }
+        { echartjs, lineFunction"绘制函数图像", {  }, { static  }, { string id"元素的ID", string title"图表的标题",  double[][] data"-[[x,y],...] 函数图像的点"  }, void,  }
+        { echartjs, Nightingale_rose"绘制函数图像", {  }, { static  }, { string id"元素的ID", string title"图表的标题", string data"- ChartData[]  {label:类别名称,yData:值} "  }, void,  }
+        { echartjs, sunburst"旭日图", {  }, { static  }, { string id"元素的ID", string title"图表的标题", string data"- TreeData[] label,ydata "  }, void,  }
+        { echartjs, themeRiver"河流图", {  }, { static  }, { string id"元素的ID", string title"图表的标题", string data"- ChartData[] label-时间,xData -类型枚举 ,ydata -值 ",string[] kind "类型的数组，xData中的值需要与其对应"  }, void,  }
+        { echartjs, scatterAggreateBar"散点聚合条形图", {  }, { static  }, { string id"元素的ID",   string data"- ChartData[] label 类别数据，xData 维度1数据，yData 维度2数据"  }, void,  }
+        { echartjs, dispose "销毁图形", {  }, { static }, { string id"元素的ID",bool destroyDom"是否销毁dom"  }, void,  }
+        { ChartData, testFunction "测试函数", , { static }, { double x}, double, { 
+           //基构造方法请写在第一行
+            x/=10;
+            return Math.sin(x) * Math.cos(x * 2 + 1) * Math.sin(x * 3 + 2) * 50;            
+        }}
+        { ChartData, ChartData "构造方法", , {  }, { string label "标签",double xData "x 数据",double yData "y 数据"}, , { 
+           //基构造方法请写在第一行
+            this.label=label;
+            this.xData=xData;
+            this.yData=yData;            
+        }}
+        { ChartData, ChartData "构造方法", , {  }, { string label "标签"  ,double yData "y 数据"}, , { 
+           //基构造方法请写在第一行
+            this.label=label;            
+            this.yData=yData;            
+        }}
+        { ChartData, toString "", ,{  }, {  }, string, {
+            //请在此处写代码主体
+            return "{\"label\":\""+this.label+"\",\"xData\":"+this.xData+",\"yData\":"+this.yData+"}";
+           
+        } }
+        { ChartData ,toListJson "转为转为json数据",,{static},{List<ChartData> list "list"}, string, {
+            var arr = list.toArray();
+            var ret = "[";
+            for(var i = 0; i < arr.length; i++) {
+                var item = arr[i];
+                ret += "{"; 
+                ret += "\"label\":\"" + item.label + "\",";
+                ret += "\"xData\":" + item.xData + ",";
+                ret += "\"yData\":" + item.yData;
+                ret += "}";
+                if (i < arr.length - 1) {
+                    ret += ",";
+                }
+            }
+            ret += "]";
+            return ret;
+         } 
+        }
+        { ChartData , dictToJson "转为json数据",, {static},{Dictionary<string,Dictionary<string,int>> data},string,{
+            var keys=data.keys.toArray();
+            var str="{";
+            for(var i=0;i<keys.length;i++)
+            {
+                str+="\""+keys[i]+"\":{";
+                var subItem=data[keys[i]];
+                var subKeys=subItem.keys.toArray();
+                for(var j=0;j<subKeys.length;j++)
+                {
+                    str+="\""+subKeys[j]+"\":"+subItem[subKeys[j]]+",";
+                }
+                str= str.remove(str.length-1);
+                str+="},";
+            }
+            str=str.remove(str.length-1);
+            str+="}";
+            
+            return str ;
+        }}
+        { ChartDataArr, ChartDataArr "构造方法", , {  }, {string xData   "x 数据",double[] yData "y 数据"  }, , { 
+            //基构造方法请写在第一行
+          this.xData=xData;
+          this.yData=yData;
+        } }
+        { ChartDataArr, arrToJson<T> "", ,{ static }, {T[] list  },  string, {
+            //请在此处写代码主体
+            var ret="[";
+            for(var i=0;i<list.length;i++)
+            {
+                ret+=list[i].toString();
+                ret+=",";
+            }
+            if(list.length>0)
+            {
+                ret=ret.remove(ret.length-1);
+            }
+            ret+="]";
+            return ret;
+        } }
+        { ChartDataArr , toString "转为json数据",, { },{  },string,{
+            var ret="{";
+            ret+="\"xData\":\""+ this.xData+"\",";
+            ret+="\"yData\":"+ChartDataArr.arrToJson<double>(this.yData);
+            ret+="}";
+            return ret;;
+        }
+    }
+        { TreeData, TreeData"构造", ,{  }, { string name}, , {
+            //请在此处写代码主体
+            this.name=name;
+            this.children=new List<TreeData>();
+            this.value=0;
+        } }
+        { TreeData, TreeData"构造", ,{  }, { string name,double value }, , {
+            //请在此处写代码主体
+            this.name=name;
+            this.value=value;
+            this.children=new List<TreeData>();
+        } }
+        { TreeData, AddChild"添加子元素", {  }, { }, { TreeData child }, void, {
+            //请在此处写代码主体
+            this.children.add(child);
+            return;
+        } }
+        { TreeData, toString"json", {  }, {  }, {  }, string, {
+            //请在此处写代码主体
+            var ret="{";
+            ret+="\"name\":\""+this.name+"\",";
+            ret+="\"value\":"+this.value+",";
+            ret+="\"children\":"+ChartDataArr.arrToJson<TreeData>(this.children.toArray());
+            ret+="}";
+            return ret;
+        } }
+    }
+}

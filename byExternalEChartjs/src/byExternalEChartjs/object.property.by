@@ -1,0 +1,20 @@
+﻿ku byExternalEChartjs
+{
+    system biao object.property "面向对象属性表" (
+    string belong "所属类型"
+    , string name "名称"
+    , string[] scenes "场景"
+    , string[] modifiers "修饰符"
+    , string type "类型"
+    , OBJECT value "值")
+    {
+        { ChartData, label "标签", {  }, {  }, string,  }
+        { ChartData, xData "x轴数据", {  }, {  }, double,  }
+        { ChartData, yData "y轴数据", {  }, {  }, double,  }
+        { ChartDataArr, xData "x 数据", {  }, {  },string,  }
+        { ChartDataArr, yData "y 数据", {  }, {  }, double[],  }
+        { TreeData, name"节点名", {  }, {  }, string,  }
+        { TreeData, value"数值", {  }, {  }, double,  }
+        { TreeData, children "子节点", {  }, {  }, List<TreeData>,  }
+    }
+}

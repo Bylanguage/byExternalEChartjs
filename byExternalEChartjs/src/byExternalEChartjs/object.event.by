@@ -1,0 +1,12 @@
+﻿ku byExternalEChartjs
+{
+    system biao object.event "面向对象事件表" (
+    string belong "所属类型"
+    , string name "名称"
+    , string[] scenes "场景"
+    , string[] modifiers "修饰符"
+    , string[] parameters "参数")
+    {
+        
+    }
+}

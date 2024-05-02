@@ -1,0 +1,16 @@
+﻿ku EChartjsDemoTest
+{
+    system biao identity "身份类型表" (
+    string name "名称"
+    , string[] scenes "场景"
+    , string[] modifiers "修饰符"
+    , string kind "类型类别"
+    , string inheritance "继承项"
+    , string[] implementations "实现接口"
+    , string constraints "约束项")
+    {
+        { ClientStartup "客户端入口身份", { client }, , identity, by.identity.Role, {  },  }
+        { ServerStartup "服务端入口身份", { server }, , identity, by.identity.Role, {  },  }
+        { Home "web 站点主页", { web }, , identity, by.identity.Page, {  },  }
+    }
+}

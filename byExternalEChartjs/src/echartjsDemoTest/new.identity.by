@@ -1,0 +1,10 @@
+﻿ku EChartjsDemoTest
+{
+    new biao identity "身份实例表" (
+    string name "名称"
+    , string type "身份类型"
+    , string to "标记项")
+    {
+        { home "web 站点主页", EChartjsDemoTest.identity.Home, "index.html" }
+    }
+}
